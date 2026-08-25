@@ -1,0 +1,25 @@
+# Terraform working directory
+**/.terraform/*
+
+# Terraform state
+*.tfstate
+*.tfstate.*
+
+# Terraform variable files
+*.tfvars
+*.tfvars.json
+
+# Terraform plans
+tfplan
+*.tfplan
+
+# Terraform crash logs
+crash.log
+crash.*.log
+
+# Dynamically generated backend
+backend.tf
+
+# Local/generated files
+result.json
+src.zip
