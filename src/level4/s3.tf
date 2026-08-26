@@ -1,29 +1,15 @@
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = var.s3_bucket_name
-
+resource "aws_s3_bucket" "terraform-state" {
+  bucket = format("%s-apl-devops-terraform-state-060344054092", var.aws_owner)
   tags = {
-    Project     = "aws-devops-level4"
-    Iteration   = "4"
-    Team        = "APL"
-    ManagedBy   = "Terraform"
-    Environment = "level4-iteration4"
+    Team = "APL"
+    ManagedBy = "terraform"
   }
 }
 
-resource "aws_s3_bucket_versioning" "terraform_state" {
-  bucket = aws_s3_bucket.terraform_state.id
+resource "aws_s3_bucket_versioning" "devops-terraform-state" {
+  bucket = aws_s3_bucket.terraform-state.id
 
   versioning_configuration {
     status = "Enabled"
-  }
-}
-
-resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state" {
-  bucket = aws_s3_bucket.terraform_state.id
-
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
-    }
   }
 }

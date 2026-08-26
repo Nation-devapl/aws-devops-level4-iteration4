@@ -1,24 +1,19 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/sh
+echo refreshing backend config for terraform
 
-echo "===== TERRAFORM BACKEND CONFIGURATION ====="
+cat <<EOV > terraform.tfvars
+aws_owner = "${MY_USER}"
+EOV
 
-: "${S3_BUCKET:?ERROR: S3_BUCKET is not set}"
-: "${AWS_REGION:?ERROR: AWS_REGION is not set}"
-: "${STATE_KEY:?ERROR: STATE_KEY is not set}"
-
-cat > backend.tf <<EOT
+cat <<EOT > backend.tf
 terraform {
   backend "s3" {
-    bucket       = "${S3_BUCKET}"
-    key          = "${STATE_KEY}"
-    region       = "${AWS_REGION}"
-    encrypt      = true
-    use_lockfile = true
+    bucket         = "${MY_USER}-apl-devops-terraform-state-060344054092"
+    key            = "devops.school"
+    region         = "${AWS_REGION}"
+    encrypt        = true
+    use_lockfile   = true
   }
 }
 EOT
 
-echo "Generated backend.tf"
-echo "Bucket: $S3_BUCKET"
-echo "Region: $AWS_REGION"
