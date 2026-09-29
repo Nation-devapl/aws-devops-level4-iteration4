@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "terraform-state" {
-  bucket = format("%s-apl-devops-terraform-state-060344054092", var.aws_owner)
+  bucket   = format("%s-apl-devops-terraform-state", var.aws_owner)
   tags = {
     Team = "APL"
     ManagedBy = "terraform"

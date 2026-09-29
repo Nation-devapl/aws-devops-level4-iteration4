@@ -1,9 +1,18 @@
+#  Local .terraform directories
 **/.terraform/*
+
+# .tfstate files
 *.tfstate
 *.tfstate.*
+
+# .tfvars files
 *.tfvars
+
 tfplan
+
 .terraform.lock.hcl
 result.json
 src.zip
+
+# dynamic backend
 backend.tf
